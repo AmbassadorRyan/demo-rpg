@@ -1,0 +1,15 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Filter
+metadata:
+  name: keycloak-filter
+  namespace: ambassador
+spec:
+  OAuth2:
+    authorizationURL: https://keycloak.ryan.k736.net/auth/realms/master
+    audience: ambassador
+    clientID: ambassador
+    secret: h7wDhaAzONHkfUje56HkbVU1kPkfaTGg
+    protectedOrigins:
+    - origin: https://demo.ryan.k736.net
+      includeSubdomains: true

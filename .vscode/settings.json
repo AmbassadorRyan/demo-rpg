@@ -1,3 +1,4 @@
 {
-    "makefile.extensionOutputFolder": "./.vscode"
+    "makefile.extensionOutputFolder": "./.vscode",
+    "hqServer.browser.useBuiltinBrowser": true
 }

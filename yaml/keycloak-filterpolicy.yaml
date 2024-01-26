@@ -1,0 +1,15 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: FilterPolicy
+metadata:
+  name: filter-policy
+  namespace: ambassador
+spec:
+  rules:
+    - host: "demo.ryan.k736.net"
+      path: "*"
+      filters:
+        - name: keycloak-filter ## Enter the Filter name from above
+          arguments:
+            scope:
+            - "offline_access"

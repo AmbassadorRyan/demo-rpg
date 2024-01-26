@@ -5,27 +5,27 @@ metadata:
   name: example-host
 spec:
   acmeProvider:
-    email: marekojames@datawire.io
-  hostname: "demo1.kjames.k736.net"
+    email: rgrantom@datawire.io
+  hostname: "demo.ryan.k736.net"
 ---
 apiVersion: getambassador.io/v3alpha1
 kind: Mapping
 metadata:
   name: web-mapping
 spec:
-  hostname: "demo1.kjames.k736.net"
+  hostname: "demo.ryan.k736.net"
   prefix: /
   service: quotefrontend
   cors:
     origins: 
-    - "http://demo1.kjames.k736.net"
+    - "https://demo.ryan.k736.net"
 ---
 apiVersion: getambassador.io/v3alpha1
 kind: Mapping
 metadata:
   name: quote-api
 spec:
-  hostname: "demo1.kjames.k736.net"
+  hostname: "demo.ryan.k736.net"
   prefix: "/quote/"
-  service: quote.default
+  service: quote.ambassador:80
 

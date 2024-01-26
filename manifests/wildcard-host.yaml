@@ -11,7 +11,7 @@ kind: Host
 metadata:
   name: demo-host
 spec:
-  hostname: "demo1.kjames.k736.net"
+  hostname: "demo.ryan.k736.knet"
   acmeProvider:
-    email: marekojames@datawire.io
+    email: rgrantom@datawire.io
 

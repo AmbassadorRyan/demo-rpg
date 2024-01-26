@@ -4,18 +4,18 @@ apiVersion: getambassador.io/v3alpha1
 kind: Filter
 metadata:
   name: keycloak-filter-quote
-  namespace: demo
+  namespace: ambassador
 spec:
   OAuth2:
-    authorizationURL: https://keycloak1.kjames.k736.net/realms/ambassador
+    authorizationURL: https://keycloak.ryan.k736.net/realms/master
     audience: ambassador
     clientID: ambassador
-    secret: TjNh5m6SgziCXVjh15cOUFPgRr7KALxJ
+    secret: 6Ie5j5aAwqkC0tpaCOv2W0GLt4cK2DnF
     injectRequestHeaders:
     - name: "x-token-name"
       value: "{{ .token.Claims.name }}"
     protectedOrigins:
-    - origin: http://demo1.kjames.k736.net
+    - origin: https://demo.ryan.k736.net
       includeSubdomains: true
 
 ---
@@ -24,14 +24,14 @@ apiVersion: getambassador.io/v3alpha1
 kind: Filter
 metadata:
   name: keycloak-jwt-filter-quote
-  namespace: demo
+  namespace: ambassador
 spec:
   JWT:
     injectRequestHeaders:
     - name: "x-token-name"
       value: "{{ .token.Claims.name }}"
-    issuer: https://demo1.kjames.k736.net/realms/ambassador
-    jwksURI: https://demo1.kjames.k736.net/realms/ambassador/protocol/openid-connect/certs
+    issuer: https://keycloak.ryan.k736.net/realms/master
+    jwksURI: https://keycloak.ryan.k736.net/realms/master/.well-known/openid-configuration
 
 #---
 #apiVersion: getambassador.io/v3alpha1
@@ -64,15 +64,15 @@ apiVersion: getambassador.io/v3alpha1
 kind: FilterPolicy
 metadata:
   name: filter-policy
-  namespace: demo
+  namespace: ambassador
 spec:
   rules:
-    - host: "demo1.kjames.k736.net"
+    - host: "demo.ryan.k736.net"
       path: "*"
       filters:
         - name: keycloak-jwt-filter-quote
           onAllow: "break" # This onAllow/onDeny behavior allows for the fallthrough behavior such that a valid JWT will ignore the remaining filters after this one
           onDeny: "continue"
         - name: keycloak-filter-quote
-        #- name: external-filter-userinfo
+        
     
